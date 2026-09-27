@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bright Path Authorization and certification documents for China study abroad services.">
+  <title>Authorization | Bright Path</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+
+
+    .certificate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+      margin-top: 50px;
+    }
+    .certificate-card {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(16, 37, 66, 0.08);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(9, 18, 30, 0.06);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      cursor: pointer;
+    }
+    .certificate-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 30px rgba(9, 18, 30, 0.12);
+    }
+    .certificate-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: #f7f0e4;
+      display: block;
+      border: 1px solid rgba(16, 37, 66, 0.08);
+    }
+    .certificate-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-top: 14px;
+    }
+    .certificate-meta strong {
+      color: var(--navy-800);
+      font-size: 1rem;
+    }
+    .certificate-meta span {
+      color: var(--charcoal-600);
+      font-size: 0.85rem;
+    }
+    .pdf-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 42px;
+    }
+    @media (max-width: 640px) {
+      .document-page { padding-top: 24px; }
+      .document-sheet {
+        min-height: 380px;
+        padding-top: 24px;
+      }
+      .certificate-card img {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+<body data-page="authorization">
+  <nav id="navbar"></nav>
+  <div id="mobileMenu" class="mobile-menu"></div>
+
+  <header class="page-header">
+    <div class="page-header-bg">
+      <img src="Website Images/ChatGPT Image Sep 16, 2026, 08_19_57 AM.png" alt="Authorization and certifications" loading="eager">
+    </div>
+    <div class="container">
+      <div class="page-header-content">
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <a href="about.html">About Us</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Authorization</span>
+        </div>
+        <h1 class="page-title">Authorization &amp; Certifications</h1>
+        <p class="page-subtitle">Official authorization documents, certifications, and institutional recognition that support your safe and transparent admissions journey.</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="document-page section">
+    <div class="container">
+      <div class="certificate-grid">
+        <div class="certificate-card reveal">
+          <img src="Qadeer Website/Authrization Certificates/Authoriztion 1.png" alt="Authorization certificate 1" loading="lazy">
+          <div class="certificate-meta">
+            <strong>Authorization Letter 01</strong>
+            <span>Official Document</span>
+          </div>
+        </div>
+
+        <div class="certificate-card reveal">
+          <img src="Qadeer Website/Authrization Certificates/Authoriztion 2.png" alt="Authorization certificate 2" loading="lazy">
+          <div class="certificate-meta">
+            <strong>Authorization Letter 02</strong>
+            <span>Official Document</span>
+          </div>
+        </div>
+
+        <div class="certificate-card reveal">
+          <img src="Qadeer Website/Authrization Certificates/Authoriztion 3.png" alt="Authorization certificate 3" loading="lazy">
+          <div class="certificate-meta">
+            <strong>Authorization Letter 03</strong>
+            <span>Official Document</span>
+          </div>
+        </div>
+
+        <div class="certificate-card reveal">
+          <img src="Qadeer Website/Authrization Certificates/Authoriztion 1.png" alt="Authorization certificate 4" loading="lazy">
+          <div class="certificate-meta">
+            <strong>Authorization Letter 04</strong>
+            <span>Official Document</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pdf-actions reveal">
+        <a href="Qadeer Website/Authrization Certificates/Bright.pdf" class="btn btn-primary" target="_blank" rel="noreferrer">Open Bright Path FBR PDF</a>
+        <a href="Qadeer Website/Authrization Certificates/Partnership_Firm_Form_C_Pdf.pdf" class="btn btn-secondary" target="_blank" rel="noreferrer">Open Form C</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer" class="footer"></footer>
+  <div id="floatingContact" class="floating-contact"></div>
+  <div id="lightbox" class="lightbox"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const lightbox = document.getElementById('lightbox');
+      if (!lightbox) return;
+      if (lightbox.dataset.initialized === '1') return;
+      lightbox.dataset.initialized = '1';
+
+      lightbox.innerHTML = `
+        <button class="lightbox-close" aria-label="Close">&times;</button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Previous">&#10094;</button>
+        <button class="lightbox-nav lightbox-next" aria-label="Next">&#10095;</button>
+        <div class="lightbox-content">
+          <img src="" alt="" class="lightbox-img">
+          <div class="lightbox-caption">
+            <h5 class="lightbox-title"></h5>
+            <span class="lightbox-category"></span>
+          </div>
+        </div>
+      `;
+
+      const imgEl = lightbox.querySelector('.lightbox-img');
+      const titleEl = lightbox.querySelector('.lightbox-title');
+      const catEl = lightbox.querySelector('.lightbox-category');
+      const closeBtn = lightbox.querySelector('.lightbox-close');
+      const prevBtn = lightbox.querySelector('.lightbox-prev');
+      const nextBtn = lightbox.querySelector('.lightbox-next');
+
+      const cards = Array.from(document.querySelectorAll('.certificate-card'));
+      const images = cards.map((card) => {
+        const img = card.querySelector('img');
+        const title = card.querySelector('strong')?.textContent || 'Authorization Document';
+        const category = card.querySelector('span')?.textContent || 'Official Document';
+        return { src: img ? img.src : '', title, category };
+      });
+
+      let currentIndex = 0;
+
+      function renderImage(index) {
+        if (!images.length) return;
+        currentIndex = (index + images.length) % images.length;
+        const current = images[currentIndex];
+        imgEl.src = current.src;
+        imgEl.alt = current.title;
+        titleEl.textContent = current.title;
+        catEl.textContent = current.category;
+      }
+
+      function openLightbox(index) {
+        if (!images.length) return;
+        renderImage(index);
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      cards.forEach((card, index) => {
+        card.addEventListener('click', () => openLightbox(index));
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+      prevBtn.addEventListener('click', () => renderImage(currentIndex - 1));
+      nextBtn.addEventListener('click', () => renderImage(currentIndex + 1));
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (!lightbox.classList.contains('open')) return;
+        if (event.key === 'Escape') closeLightbox();
+        if (event.key === 'ArrowLeft') renderImage(currentIndex - 1);
+        if (event.key === 'ArrowRight') renderImage(currentIndex + 1);
+      });
+    });
+  </script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

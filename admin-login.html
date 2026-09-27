@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Login | Bright Path</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .admin-login-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-5);
+      background:
+        radial-gradient(1200px 500px at 10% -10%, rgba(16, 37, 66, 0.12), transparent 60%),
+        radial-gradient(800px 400px at 110% 110%, rgba(201, 169, 97, 0.18), transparent 55%),
+        linear-gradient(135deg, #f7f6f2 0%, #eaeef3 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .admin-login-wrap::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'><circle cx='30' cy='30' r='1.2' fill='%23102542' opacity='0.07'/></svg>");
+      pointer-events: none;
+    }
+    .admin-login-card {
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      background: var(--white);
+      border-radius: 24px;
+      padding: var(--space-7) var(--space-6);
+      box-shadow: 0 30px 80px -30px rgba(16, 37, 66, 0.3), 0 10px 30px -10px rgba(16, 37, 66, 0.1);
+      border: 1px solid rgba(10, 22, 40, 0.06);
+      animation: cardIn .5s ease both;
+    }
+    @keyframes cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .admin-login-brand {
+      display: flex; align-items: center; gap: var(--space-3);
+      margin-bottom: var(--space-6);
+    }
+    .admin-login-logo {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: var(--gradient-navy);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold-400);
+      box-shadow: var(--shadow-md);
+    }
+    .admin-login-logo svg { width: 24px; height: 24px; }
+    .admin-login-title {
+      color: var(--navy-900); font-weight: 800; font-size: 1.15rem;
+      margin: 0 0 2px; letter-spacing: -0.01em;
+    }
+    .admin-login-sub {
+      color: var(--charcoal-500); font-size: 0.8rem; margin: 0;
+    }
+    .admin-login-header { margin-bottom: var(--space-6); }
+    .admin-login-header h1 {
+      color: var(--navy-900); font-size: 1.65rem; font-weight: 800;
+      letter-spacing: -0.02em; margin: 0 0 var(--space-2); line-height: 1.2;
+    }
+    .admin-login-header p {
+      color: var(--charcoal-600); font-size: 0.92rem; margin: 0; line-height: var(--lh-relaxed);
+    }
+    .form-row { margin-bottom: var(--space-4); }
+    .form-row label {
+      display: block; font-size: 0.82rem; font-weight: 700;
+      color: var(--navy-800); margin-bottom: 0.5rem; letter-spacing: 0.01em;
+    }
+    .form-row input {
+      width: 100%; box-sizing: border-box;
+      padding: 0.9rem 1rem;
+      font-family: inherit; font-size: 0.95rem; color: var(--charcoal-800);
+      background: var(--sand-50);
+      border: 1.5px solid rgba(10, 22, 40, 0.08);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      outline: none;
+    }
+    .form-row input:focus {
+      border-color: var(--gold-500);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.14);
+    }
+    .form-row .input-icon-wrap { position: relative; }
+    .form-row .input-icon-wrap svg {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      width: 18px; height: 18px; color: var(--charcoal-400);
+    }
+    .form-row .input-icon-wrap input { padding-left: 2.75rem; }
+    .admin-login-error {
+      display: none;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 107, 107, 0.08);
+      border: 1px solid rgba(255, 107, 107, 0.2);
+      color: #d63031;
+      font-size: 0.85rem; font-weight: 600;
+      margin-bottom: var(--space-4);
+      align-items: center; gap: 0.5rem;
+    }
+    .admin-login-error.show { display: flex; }
+    .admin-login-btn {
+      width: 100%; display: inline-flex; justify-content: center; align-items: center;
+      gap: 0.5rem; padding: 0.95rem 1.25rem; border: none; cursor: pointer;
+      border-radius: var(--radius-md);
+      font-family: inherit; font-size: 0.95rem; font-weight: 700;
+      color: var(--navy-900); background: var(--gradient-gold);
+      box-shadow: 0 10px 24px -12px rgba(201, 169, 97, 0.8);
+      transition: all var(--transition-normal);
+    }
+    .admin-login-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 28px -12px rgba(201, 169, 97, 0.9); }
+    .admin-login-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+    .admin-login-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--charcoal-600); font-size: 0.85rem; font-weight: 600;
+      margin-top: var(--space-5); text-decoration: none; transition: color var(--transition-fast);
+    }
+    .admin-login-back:hover { color: var(--navy-800); }
+    .admin-login-hint {
+      margin-top: var(--space-5);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      background: rgba(16, 37, 66, 0.03);
+      border: 1px dashed rgba(16, 37, 66, 0.1);
+      color: var(--charcoal-600);
+      font-size: 0.78rem; line-height: 1.6;
+    }
+    .admin-login-hint strong { color: var(--navy-800); display: block; margin-bottom: 2px; }
+  </style>
+</head>
+<body>
+  <div class="admin-login-wrap">
+    <div class="admin-login-card">
+      <div class="admin-login-brand">
+        <div class="admin-login-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <h3 class="admin-login-title">Bright Path Admin</h3>
+          <p class="admin-login-sub">Scholarship Management Portal</p>
+        </div>
+      </div>
+
+      <div class="admin-login-header">
+        <h1>Welcome Back</h1>
+        <p>Sign in with your administrator credentials to manage scholarship postings and website content.</p>
+      </div>
+
+      <div id="loginError" class="admin-login-error">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="loginErrorText"></span>
+      </div>
+
+      <form id="loginForm" autocomplete="off" novalidate>
+        <div class="form-row">
+          <label for="adminEmail">Admin Email</label>
+          <div class="input-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <input type="email" id="adminEmail" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="adminPassword">Password</label>
+          <div class="input-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="adminPassword" name="password" placeholder="Enter your password" required>
+          </div>
+        </div>
+        <button type="submit" class="admin-login-btn" id="loginSubmitBtn">
+          <span>Sign In to Dashboard</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <a href="index.html" class="admin-login-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Main Website
+      </a>
+
+      <div class="admin-login-hint">
+        <strong>Default Login (First Time):</strong>
+        Email: brightpathinternationaledu@gmail.com<br>
+        Password: BrightPath@2025
+      </div>
+    </div>
+  </div>
+
+  <div id="adminBootState" style="display:none;margin-bottom:var(--space-4);padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);background:rgba(0,184,148,0.08);border:1px solid rgba(0,184,148,0.2);color:#00876c;font-size:0.8rem;font-weight:700;align-items:center;gap:0.5rem;"></div>
+
+  <script src="js/admin.js?v=20260927_02"></script>
+  <script>
+    (function () {
+      const form = document.getElementById('loginForm');
+      const emailInp = document.getElementById('adminEmail');
+      const passInp = document.getElementById('adminPassword');
+      const submitBtn = document.getElementById('loginSubmitBtn');
+      const errorBox = document.getElementById('loginError');
+      const errorText = document.getElementById('loginErrorText');
+
+      function showError(msg) {
+        errorText.textContent = msg || 'Login failed.';
+        errorBox.classList.add('show');
+      }
+      function hideError() {
+        errorBox.classList.remove('show');
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const rawRedirect = params.get('redirect');
+      const redirect = window.BPAdmin && window.BPAdmin.normalizeRedirect
+        ? window.BPAdmin.normalizeRedirect(rawRedirect)
+        : (rawRedirect && !/admin-login/i.test(rawRedirect) ? rawRedirect : 'admin-dashboard.html');
+
+      function safeGoto(url) {
+        if (!url) return;
+        if (window.__BP_ADMIN_REDIRECT_PENDING__) return;
+        window.__BP_ADMIN_REDIRECT_PENDING__ = true;
+        window.location.replace(url);
+      }
+
+      const session = window.BPAdmin ? window.BPAdmin.Storage.getSession() : null;
+      if (session) {
+        setTimeout(function () { safeGoto(redirect); }, 150);
+        return;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        hideError();
+
+        const email = emailInp.value.trim();
+        const password = passInp.value;
+
+        if (!email || !password) {
+          showError('Please enter both email and password.');
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.querySelector('span').textContent = 'Signing In...';
+
+        setTimeout(function () {
+          const result = window.BPAdmin.login(email, password);
+          if (result.ok) {
+            submitBtn.querySelector('span').textContent = 'Success! Redirecting...';
+            setTimeout(function () { safeGoto(redirect); }, 250);
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.querySelector('span').textContent = 'Sign In to Dashboard';
+            showError(result.message || 'Invalid credentials.');
+          }
+        }, 450);
+      });
+
+      try {
+        var boot = document.getElementById('adminBootState');
+        if (boot && window.BPAdmin) {
+          var expEmail = window.BPAdmin.DEFAULT_ADMIN ? window.BPAdmin.DEFAULT_ADMIN.email : '';
+          var expPass = window.BPAdmin.DEFAULT_ADMIN ? window.BPAdmin.DEFAULT_ADMIN.password : '';
+          if (expEmail && expPass) {
+            boot.textContent = '✓ System ready — using login: ' + expEmail + ' / ' + expPass;
+            boot.style.display = 'flex';
+            try { console.log('[BrightPath Admin] Boot OK. Expected credentials:', expEmail, expPass); } catch (_e) {}
+          }
+        }
+      } catch (_e) {}
+    })();
+  </script>
+</body>
+</html>

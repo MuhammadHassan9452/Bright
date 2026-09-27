@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard | Bright Path</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { background: #f7f6f2; }
+
+    .admin-wrap {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+    }
+    @media (max-width: 900px) {
+      .admin-wrap { grid-template-columns: 1fr; }
+      .admin-sidebar { position: relative !important; }
+    }
+
+    .admin-sidebar {
+      background: linear-gradient(180deg, #0a1628 0%, #102542 100%);
+      color: white;
+      padding: var(--space-6) var(--space-5);
+      min-height: 100vh;
+      position: sticky; top: 0;
+      display: flex; flex-direction: column;
+    }
+    .admin-brand {
+      display: flex; align-items: center; gap: 0.7rem;
+      margin-bottom: var(--space-7);
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .admin-brand-logo {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--gradient-gold); color: var(--navy-900);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .admin-brand h2 {
+      margin: 0; font-size: 1rem; font-weight: 800; letter-spacing: -0.01em;
+      color: var(--white);
+    }
+    .admin-brand p {
+      margin: 2px 0 0; font-size: 0.72rem; color: rgba(255,255,255,0.55); font-weight: 500;
+    }
+    .admin-section-title {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: rgba(255,255,255,0.4);
+      margin: 0 0 var(--space-3);
+      padding: 0 var(--space-2);
+    }
+    .admin-nav {
+      list-style: none; padding: 0; margin: 0 0 var(--space-5);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .admin-nav a {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.7rem 0.85rem; border-radius: 10px;
+      color: rgba(255,255,255,0.7); text-decoration: none;
+      font-size: 0.85rem; font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+    .admin-nav a svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .admin-nav a:hover, .admin-nav a.active {
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+    }
+    .admin-nav a.active {
+      background: linear-gradient(135deg, rgba(201,169,97,0.2), rgba(201,169,97,0.06));
+      color: var(--gold-400);
+    }
+    .admin-user {
+      margin-top: auto;
+      padding: var(--space-4);
+      background: rgba(255,255,255,0.04);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .admin-user-name {
+      font-size: 0.85rem; font-weight: 700; color: var(--white);
+      margin: 0 0 2px;
+    }
+    .admin-user-email {
+      font-size: 0.72rem; color: rgba(255,255,255,0.5);
+      margin: 0 0 var(--space-3);
+      word-break: break-all;
+    }
+    .admin-logout {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.4rem;
+      width: 100%; padding: 0.6rem 0.85rem;
+      background: rgba(255,107,107,0.12); color: #ff8a8a;
+      border: 1px solid rgba(255,107,107,0.2);
+      border-radius: 10px; cursor: pointer;
+      font-family: inherit; font-size: 0.8rem; font-weight: 700;
+      transition: all var(--transition-fast);
+    }
+    .admin-logout:hover {
+      background: rgba(255,107,107,0.2); color: #fff;
+    }
+
+    .admin-main { padding: var(--space-6) var(--space-7); max-width: 1500px; }
+    @media (max-width: 600px) { .admin-main { padding: var(--space-4) var(--space-3); } }
+
+    .admin-topbar {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: var(--space-7); gap: var(--space-4); flex-wrap: wrap;
+    }
+    .admin-topbar h1 {
+      margin: 0 0 0.4rem; font-size: 1.85rem; font-weight: 800;
+      color: var(--navy-900); letter-spacing: -0.02em;
+    }
+    .admin-topbar p { margin: 0; color: var(--charcoal-600); font-size: 0.92rem; }
+    .admin-topbar-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-7);
+    }
+    .admin-stat {
+      background: var(--white);
+      border: 1px solid rgba(10, 22, 40, 0.06);
+      border-radius: 16px;
+      padding: var(--space-5);
+      box-shadow: 0 2px 8px rgba(16,37,66,0.04);
+    }
+    .admin-stat-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3); }
+    .admin-stat-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .admin-stat-num {
+      font-size: 2rem; font-weight: 800; color: var(--navy-900);
+      margin: 0; letter-spacing: -0.02em; line-height: 1;
+    }
+    .admin-stat-label {
+      font-size: 0.78rem; font-weight: 600; color: var(--charcoal-500);
+      margin-top: 4px;
+    }
+
+    .admin-grid-two {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: var(--space-5);
+      align-items: flex-start;
+    }
+    @media (max-width: 1100px) {
+      .admin-grid-two { grid-template-columns: 1fr; }
+    }
+
+    .admin-card {
+      background: var(--white);
+      border: 1px solid rgba(10, 22, 40, 0.06);
+      border-radius: 18px;
+      box-shadow: 0 2px 10px rgba(16,37,66,0.04);
+      overflow: hidden;
+    }
+    .admin-card-head {
+      padding: var(--space-5) var(--space-5);
+      border-bottom: 1px solid rgba(10, 22, 40, 0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      gap: var(--space-3);
+    }
+    .admin-card-head h3 {
+      margin: 0; font-size: 1.1rem; font-weight: 800; color: var(--navy-900);
+      letter-spacing: -0.01em;
+    }
+    .admin-card-head p {
+      margin: 4px 0 0; font-size: 0.78rem; color: var(--charcoal-500);
+    }
+    .admin-card-body { padding: var(--space-5); }
+
+    .add-form .form-row { margin-bottom: var(--space-4); }
+    .add-form label {
+      display: block; font-size: 0.8rem; font-weight: 700;
+      color: var(--navy-800); margin-bottom: 0.4rem;
+    }
+    .add-form input, .add-form select, .add-form textarea {
+      width: 100%; box-sizing: border-box;
+      padding: 0.75rem 0.9rem;
+      font-family: inherit; font-size: 0.9rem; color: var(--charcoal-800);
+      background: #fafafa;
+      border: 1.5px solid rgba(10, 22, 40, 0.08);
+      border-radius: 10px;
+      transition: all var(--transition-fast); outline: none;
+      resize: vertical;
+    }
+    .add-form input:focus, .add-form select:focus, .add-form textarea:focus {
+      border-color: var(--gold-500);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.14);
+    }
+    .add-form-row-two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    @media (max-width: 600px) { .add-form-row-two { grid-template-columns: 1fr; } }
+
+    .upload-area {
+      border: 2px dashed rgba(10,22,40,0.14);
+      border-radius: 14px;
+      padding: var(--space-5);
+      text-align: center;
+      background: #fafafa;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      margin-bottom: var(--space-4);
+    }
+    .upload-area:hover, .upload-area.drag {
+      border-color: var(--gold-500);
+      background: rgba(201,169,97,0.05);
+    }
+    .upload-area svg {
+      width: 36px; height: 36px; color: var(--charcoal-400);
+      margin-bottom: var(--space-2);
+    }
+    .upload-area h5 {
+      margin: 0 0 4px; font-size: 0.95rem; color: var(--navy-800); font-weight: 700;
+    }
+    .upload-area p {
+      margin: 0; font-size: 0.78rem; color: var(--charcoal-500);
+    }
+    .upload-area .preview-img {
+      max-width: 100%; max-height: 180px;
+      border-radius: 10px; margin-top: var(--space-3);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.85rem 1.25rem;
+      background: var(--gradient-gold); color: var(--navy-900);
+      border: none; border-radius: 10px;
+      font-family: inherit; font-size: 0.88rem; font-weight: 700;
+      cursor: pointer; box-shadow: 0 8px 20px -10px rgba(201, 169, 97, 0.7);
+      transition: all var(--transition-fast);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+      padding: 0.85rem 1.1rem;
+      background: var(--white); color: var(--navy-800);
+      border: 1.5px solid rgba(10,22,40,0.1); border-radius: 10px;
+      font-family: inherit; font-size: 0.85rem; font-weight: 700;
+      cursor: pointer; transition: all var(--transition-fast);
+    }
+    .btn-outline:hover { border-color: var(--navy-800); background: rgba(10,22,40,0.02); }
+
+    .btn-danger-outline {
+      background: rgba(255,107,107,0.08); color: #d63031;
+      border-color: rgba(255,107,107,0.25);
+    }
+    .btn-danger-outline:hover {
+      background: rgba(255,107,107,0.15); border-color: rgba(255,107,107,0.4);
+    }
+
+    .scholarship-list-item {
+      display: grid; grid-template-columns: 90px 1fr auto;
+      gap: var(--space-4); align-items: center;
+      padding: var(--space-4);
+      border: 1px solid rgba(10,22,40,0.06);
+      border-radius: 14px;
+      background: var(--white);
+      transition: all var(--transition-fast);
+    }
+    .scholarship-list-item + .scholarship-list-item { margin-top: var(--space-3); }
+    .scholarship-list-item:hover { box-shadow: 0 8px 20px -14px rgba(16,37,66,0.2); border-color: rgba(10,22,40,0.12); }
+    .sch-thumb {
+      width: 90px; height: 90px; border-radius: 10px;
+      overflow: hidden; background: #f0f0f3; flex-shrink: 0;
+    }
+    .sch-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .sch-info h4 {
+      margin: 0 0 4px; font-size: 0.98rem; color: var(--navy-900); font-weight: 700;
+      line-height: 1.3;
+    }
+    .sch-info p {
+      margin: 0 0 var(--space-2); font-size: 0.8rem; color: var(--charcoal-600); line-height: 1.45;
+    }
+    .sch-cat {
+      display: inline-block; padding: 0.18rem 0.6rem;
+      background: rgba(16,37,66,0.06); color: var(--navy-800);
+      font-size: 0.68rem; font-weight: 700;
+      border-radius: 999px; letter-spacing: 0.03em;
+    }
+    .sch-actions { display: flex; flex-direction: column; gap: 0.5rem; }
+    .sch-del {
+      width: 40px; height: 40px; border-radius: 10px;
+      border: 1px solid rgba(255,107,107,0.2);
+      background: rgba(255,107,107,0.08);
+      color: #d63031; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition-fast);
+    }
+    .sch-del:hover { background: rgba(255,107,107,0.18); transform: scale(1.05); }
+    .sch-empty {
+      padding: var(--space-6) var(--space-4);
+      text-align: center;
+      color: var(--charcoal-500);
+      font-size: 0.88rem;
+    }
+    .sch-empty svg { width: 48px; height: 48px; color: var(--charcoal-300); margin-bottom: var(--space-3); }
+
+    .toast {
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      padding: 0.85rem 1.1rem; border-radius: 12px;
+      color: white; font-weight: 600; font-size: 0.85rem;
+      display: flex; align-items: center; gap: 0.6rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      transform: translateY(20px); opacity: 0;
+      transition: all .3s ease;
+      max-width: 340px;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { background: linear-gradient(135deg, #00b894, #00a381); }
+    .toast.error   { background: linear-gradient(135deg, #ff6b6b, #ee5a6f); }
+    .toast.info    { background: linear-gradient(135deg, #102542, #2a4470); }
+
+    .modal-mask {
+      position: fixed; inset: 0; background: rgba(10,22,40,0.6);
+      backdrop-filter: blur(4px);
+      display: none; align-items: center; justify-content: center;
+      z-index: 9998; padding: var(--space-4);
+    }
+    .modal-mask.show { display: flex; }
+    .modal {
+      background: white; border-radius: 18px; padding: var(--space-6);
+      max-width: 420px; width: 100%;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+    }
+    .modal h3 { margin: 0 0 var(--space-3); color: var(--navy-900); font-size: 1.25rem; }
+    .modal p { margin: 0 0 var(--space-5); color: var(--charcoal-600); font-size: 0.9rem; line-height: 1.6; }
+    .modal-actions { display: flex; gap: var(--space-3); justify-content: flex-end; }
+
+    .gallery-list-wrap {
+      max-height: 620px; overflow-y: auto;
+      padding-right: 4px;
+    }
+    .gallery-list-wrap::-webkit-scrollbar { width: 8px; }
+    .gallery-list-wrap::-webkit-scrollbar-track { background: transparent; }
+    .gallery-list-wrap::-webkit-scrollbar-thumb { background: rgba(10,22,40,0.12); border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="admin-wrap">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <div class="admin-brand-logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <h2>Bright Path</h2>
+          <p>Admin Control Panel</p>
+        </div>
+      </div>
+
+      <div class="admin-section-title">Management</div>
+      <ul class="admin-nav">
+        <li>
+          <a href="#" class="active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Scholarships Overview
+          </a>
+        </li>
+        <li>
+          <a href="new-scholarships.html" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View Public Page
+          </a>
+        </li>
+      </ul>
+
+      <div class="admin-section-title">System</div>
+      <ul class="admin-nav">
+        <li>
+          <a href="#" id="resetDataBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            Reset Default Data
+          </a>
+        </li>
+      </ul>
+
+      <div class="admin-user">
+        <h4 class="admin-user-name">Administrator</h4>
+        <p class="admin-user-email" id="adminUserEmail">loading...</p>
+        <button class="admin-logout" id="logoutBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-topbar">
+        <div>
+          <h1>Scholarship Management</h1>
+          <p>Upload new opportunities or remove existing postings for the New Scholarship Opportunities public page.</p>
+        </div>
+        <div class="admin-topbar-actions">
+          <a href="new-scholarships.html" target="_blank" rel="noopener" class="btn-outline">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Preview Public Page
+          </a>
+        </div>
+      </div>
+
+      <div class="admin-stats-grid">
+        <div class="admin-stat reveal">
+          <div class="admin-stat-top">
+            <span style="font-size: 0.7rem; font-weight: 700; color: var(--gold-500); text-transform: uppercase; letter-spacing: 0.08em;">Total</span>
+            <div class="admin-stat-icon" style="background: rgba(16,37,66,0.08); color: var(--navy-800);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+          </div>
+          <p class="admin-stat-num" id="statTotal">0</p>
+          <div class="admin-stat-label">Active Scholarship Postings</div>
+        </div>
+        <div class="admin-stat reveal">
+          <div class="admin-stat-top">
+            <span style="font-size: 0.7rem; font-weight: 700; color: var(--gold-500); text-transform: uppercase; letter-spacing: 0.08em;">Full</span>
+            <div class="admin-stat-icon" style="background: rgba(0,184,148,0.12); color: #00a381;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+          </div>
+          <p class="admin-stat-num" id="statFull">0</p>
+          <div class="admin-stat-label">Fully Funded Programs</div>
+        </div>
+        <div class="admin-stat reveal">
+          <div class="admin-stat-top">
+            <span style="font-size: 0.7rem; font-weight: 700; color: var(--gold-500); text-transform: uppercase; letter-spacing: 0.08em;">Partial</span>
+            <div class="admin-stat-icon" style="background: rgba(201,169,97,0.18); color: #b89447;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+          </div>
+          <p class="admin-stat-num" id="statPartial">0</p>
+          <div class="admin-stat-label">Partial Funding / Grants</div>
+        </div>
+        <div class="admin-stat reveal">
+          <div class="admin-stat-top">
+            <span style="font-size: 0.7rem; font-weight: 700; color: var(--gold-500); text-transform: uppercase; letter-spacing: 0.08em;">Limited</span>
+            <div class="admin-stat-icon" style="background: rgba(255,107,107,0.12); color: #d63031;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+          </div>
+          <p class="admin-stat-num" id="statLimited">0</p>
+          <div class="admin-stat-label">Limited Seat / Closing Soon</div>
+        </div>
+      </div>
+
+      <div class="admin-grid-two">
+        <section class="admin-card">
+          <div class="admin-card-head">
+            <div>
+              <h3>Add New Scholarship</h3>
+              <p>Fill out the form and upload an image. Submissions are instantly published.</p>
+            </div>
+          </div>
+          <div class="admin-card-body">
+            <form class="add-form" id="addForm" autocomplete="off" novalidate>
+              <div>
+                <label for="imgUpload">Scholarship Image</label>
+                <div class="upload-area" id="uploadArea">
+                  <input type="file" id="imgUpload" accept="image/*" style="display:none;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <h5>Click to upload or drag & drop</h5>
+                  <p>PNG, JPEG or WEBP · max 6MB</p>
+                  <img id="uploadPreview" class="preview-img" style="display:none;" alt="preview">
+                </div>
+                <input type="text" id="imagePathManual" placeholder="Or paste an existing image path (e.g. folder/image.jpeg)" class="form-text" style="margin-top: 0; padding: 0.75rem 0.9rem; width: 100%; box-sizing: border-box; border-radius: 10px; border: 1.5px solid rgba(10,22,40,0.08); background: #fafafa; font-family: inherit; font-size: 0.85rem; color: var(--charcoal-700); outline: none;">
+              </div>
+
+              <div class="form-row" style="margin-top: var(--space-4);">
+                <label for="titleInput">Scholarship Title *</label>
+                <input type="text" id="titleInput" placeholder="e.g. Shanghai Merit Award 2025" required>
+              </div>
+
+              <div class="form-row">
+                <label for="subtitleInput">Subtitle / Benefits Line *</label>
+                <textarea id="subtitleInput" rows="2" placeholder="e.g. Top 100 University · Full Tuition + Monthly Stipend" required></textarea>
+              </div>
+
+              <div class="form-row">
+                <label for="categoryInput">Funding Category</label>
+                <select id="categoryInput">
+                  <option value="Full Funding">Full Funding (100% covered)</option>
+                  <option value="Partial">Partial Tuition Waiver / Grant</option>
+                  <option value="Limited Seats">Limited Seats / Closing Soon</option>
+                </select>
+              </div>
+
+              <div style="display: flex; gap: var(--space-3); margin-top: var(--space-5); flex-wrap: wrap;">
+                <button type="submit" class="btn-primary" id="addBtn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add & Publish Scholarship
+                </button>
+                <button type="button" class="btn-outline" id="resetFormBtn">Clear Form</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="admin-card">
+          <div class="admin-card-head">
+            <div>
+              <h3>Current Postings</h3>
+              <p>Click the red trash to instantly remove a scholarship from the website.</p>
+            </div>
+          </div>
+          <div class="admin-card-body gallery-list-wrap" id="listContainer">
+            <div id="galleryList"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status">
+    <span id="toastIcon"></span>
+    <span id="toastText"></span>
+  </div>
+
+  <div class="modal-mask" id="confirmModal">
+    <div class="modal">
+      <h3 id="confirmTitle">Confirm Action</h3>
+      <p id="confirmText">Are you sure you want to proceed?</p>
+      <div class="modal-actions">
+        <button type="button" class="btn-outline" id="confirmCancel">Cancel</button>
+        <button type="button" class="btn-primary" id="confirmOk" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f); color: white; box-shadow: 0 10px 20px -10px rgba(255,107,107,0.6);">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/admin.js?v=20260927_02"></script>
+  <script>
+    (function () {
+      if (!window.BPAdmin) return;
+
+      function start() {
+        if (!window.BPAdmin.requireLogin()) return;
+
+        var session = window.BPAdmin.Storage.getSession();
+        if (!session) return;
+        document.getElementById('adminUserEmail').textContent = session ? session.email : 'n/a';
+
+        var API = window.BPAdmin;
+
+      /* ======= Helpers ======= */
+      var pendingCallback = null;
+      var confirmModal = document.getElementById('confirmModal');
+      function showConfirm(title, text, okLabel, cb) {
+        document.getElementById('confirmTitle').textContent = title;
+        document.getElementById('confirmText').textContent = text;
+        document.getElementById('confirmOk').textContent = okLabel || 'OK';
+        pendingCallback = cb;
+        confirmModal.classList.add('show');
+      }
+      document.getElementById('confirmCancel').addEventListener('click', function () {
+        confirmModal.classList.remove('show');
+        pendingCallback = null;
+      });
+      document.getElementById('confirmOk').addEventListener('click', function () {
+        confirmModal.classList.remove('show');
+        if (typeof pendingCallback === 'function') pendingCallback();
+        pendingCallback = null;
+      });
+      confirmModal.addEventListener('click', function (e) {
+        if (e.target === confirmModal) {
+          confirmModal.classList.remove('show');
+          pendingCallback = null;
+        }
+      });
+
+      let toastTimer = null;
+      function showToast(msg, type) {
+        type = type || 'success';
+        const toast = document.getElementById('toast');
+        toast.className = 'toast ' + type;
+        const icons = {
+          success: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>',
+          error:   '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+          info:    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+        };
+        document.getElementById('toastIcon').innerHTML = icons[type] || icons.info;
+        document.getElementById('toastText').textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+      }
+
+      /* ======= Stats ======= */
+      function refreshStats() {
+        const list = API.Storage.getScholarships();
+        document.getElementById('statTotal').textContent = list.length;
+        document.getElementById('statFull').textContent = list.filter(function (s) { return s.category === 'Full Funding'; }).length;
+        document.getElementById('statPartial').textContent = list.filter(function (s) { return s.category === 'Partial'; }).length;
+        document.getElementById('statLimited').textContent = list.filter(function (s) { return s.category === 'Limited Seats'; }).length;
+      }
+
+      /* ======= Render list ======= */
+      const galleryListEl = document.getElementById('galleryList');
+      function refreshList() {
+        refreshStats();
+        API.renderGallery(galleryListEl, { withDeleteButton: true, onDelete: function (id, btn) {
+          const list = API.Storage.getScholarships();
+          const sch = list.find(function (s) { return s.id === id; });
+          const title = sch ? sch.title : 'this scholarship';
+          showConfirm(
+            'Delete Scholarship',
+            'Are you sure you want to permanently delete "' + title + '"? This action cannot be undone and the posting will be immediately removed from the public page.',
+            'Yes, Delete It',
+            function () {
+              const ok = API.removeScholarship(id);
+              if (ok) {
+                showToast('Scholarship deleted successfully.', 'success');
+                refreshList();
+              } else {
+                showToast('Failed to delete scholarship.', 'error');
+              }
+            }
+          );
+        }});
+        const items = galleryListEl.querySelectorAll('.gallery-item');
+        if (items.length === 0) {
+          galleryListEl.innerHTML = [
+            '<div class="sch-empty">',
+            '  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+            '  <div style="font-weight:700;color:var(--navy-800);margin-bottom:.4rem;">No Postings Yet</div>',
+            '  <div style="max-width:340px;margin:0 auto;">Use the Add New Scholarship form on the left to publish your first opportunity.</div>',
+            '</div>'
+          ].join('');
+          return;
+        }
+        var newItems = [];
+        items.forEach(function (card) {
+          const img = card.querySelector('img');
+          const title = card.querySelector('h5') ? card.querySelector('h5').textContent : '';
+          const sub = card.querySelector('.gallery-item-caption span') ? card.querySelector('.gallery-item-caption span').textContent : '';
+          const cat = card.getAttribute('data-category') || 'Full Funding';
+          const delBtn = card.querySelector('.admin-delete-btn');
+          const wrap = document.createElement('div');
+          wrap.className = 'scholarship-list-item';
+          wrap.innerHTML = [
+            '<div class="sch-thumb">' + (img ? ('<img src="' + img.src + '" alt="' + (img.alt || '') + '" onerror="this.style.display=\'none\';this.parentNode.innerHTML=\'<div style=\\\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--sand-100);color:var(--charcoal-400);font-size:.72rem;\\\'>No Image</div>\';">') : '') + '</div>',
+            '<div class="sch-info">',
+            '  <h4>' + API.escapeHtml(title) + '</h4>',
+            '  <p>' + API.escapeHtml(sub) + '</p>',
+            '  <span class="sch-cat">' + API.escapeHtml(cat) + '</span>',
+            '</div>',
+            '<div class="sch-actions"></div>'
+          ].join('');
+          if (delBtn) {
+            const newBtn = document.createElement('button');
+            newBtn.type = 'button';
+            newBtn.className = 'sch-del';
+            newBtn.title = 'Delete scholarship';
+            newBtn.innerHTML = delBtn.innerHTML;
+            const id = delBtn.getAttribute('data-delete-id');
+            newBtn.addEventListener('click', function () { delBtn.click(); });
+            wrap.querySelector('.sch-actions').appendChild(newBtn);
+          }
+          newItems.push(wrap);
+        });
+        galleryListEl.innerHTML = '';
+        newItems.forEach(function (el) { galleryListEl.appendChild(el); });
+      }
+      refreshList();
+
+      /* ======= Add form ======= */
+      const uploadArea = document.getElementById('uploadArea');
+      const imgUpload = document.getElementById('imgUpload');
+      const uploadPreview = document.getElementById('uploadPreview');
+      const imagePathManual = document.getElementById('imagePathManual');
+      let currentImageData = '';
+
+      uploadArea.addEventListener('click', function (e) {
+        if (e.target.tagName !== 'INPUT') imgUpload.click();
+      });
+      uploadArea.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        uploadArea.classList.add('drag');
+      });
+      uploadArea.addEventListener('dragleave', function () { uploadArea.classList.remove('drag'); });
+      uploadArea.addEventListener('drop', function (e) {
+        e.preventDefault();
+        uploadArea.classList.remove('drag');
+        const file = (e.dataTransfer.files || [])[0];
+        if (file) handleFile(file);
+      });
+      imgUpload.addEventListener('change', function () {
+        const file = (imgUpload.files || [])[0];
+        if (file) handleFile(file);
+      });
+
+      function handleFile(file) {
+        if (!file.type.startsWith('image/')) {
+          showToast('Please upload an image file.', 'error');
+          return;
+        }
+        if (file.size > 6 * 1024 * 1024) {
+          showToast('Image too large. Maximum 6MB.', 'error');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+          currentImageData = ev.target.result;
+          uploadPreview.src = currentImageData;
+          uploadPreview.style.display = 'inline-block';
+          imagePathManual.value = '';
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function resetAddForm() {
+        document.getElementById('addForm').reset();
+        currentImageData = '';
+        uploadPreview.removeAttribute('src');
+        uploadPreview.style.display = 'none';
+      }
+      document.getElementById('resetFormBtn').addEventListener('click', resetAddForm);
+
+      document.getElementById('addForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const title = document.getElementById('titleInput').value.trim();
+        const subtitle = document.getElementById('subtitleInput').value.trim();
+        const category = document.getElementById('categoryInput').value;
+        const manualPath = imagePathManual.value.trim();
+
+        if (!title || !subtitle) {
+          showToast('Please fill in Title and Subtitle.', 'error');
+          return;
+        }
+        const img = currentImageData || manualPath;
+        if (!img) {
+          showToast('Please upload an image or paste an image path.', 'error');
+          return;
+        }
+
+        API.addScholarship({ image: img, title: title, subtitle: subtitle, category: category });
+        showToast('Scholarship added and published!', 'success');
+        resetAddForm();
+        refreshList();
+      });
+
+      /* ======= Reset data ======= */
+      document.getElementById('resetDataBtn').addEventListener('click', function (e) {
+        e.preventDefault();
+        showConfirm(
+          'Reset All Scholarships',
+          'This will erase all current postings and restore the 9 default scholarship opportunities. Custom additions and edits will be lost permanently.',
+          'Reset to Default',
+          function () {
+            API.resetScholarships();
+            refreshList();
+            showToast('Scholarships reset to default data.', 'info');
+          }
+        );
+      });
+
+      /* ======= Logout ======= */
+      document.getElementById('logoutBtn').addEventListener('click', function () {
+        showConfirm(
+          'Sign Out',
+          'Are you sure you want to sign out of the admin dashboard?',
+          'Sign Out',
+          function () { API.logout(); }
+        );
+      });
+      } // end of start()
+
+      var waitTries = 0;
+      function waitForSession() {
+        var s = window.BPAdmin.Storage.getSession();
+        if (s || waitTries >= 20) {
+          start();
+          return;
+        }
+        waitTries++;
+        setTimeout(waitForSession, 50);
+      }
+      waitForSession();
+    })();
+  </script>
+</body>
+</html>

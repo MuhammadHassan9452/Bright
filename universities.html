@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore China's top universities with Bright Path. Filter by city, degree, major, tuition, and scholarships to find your perfect program.">
+  <title>Universities | Bright Path - Study in China</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="universities">
+  <nav id="navbar"></nav>
+  <div id="mobileMenu" class="mobile-menu"></div>
+
+  <header class="page-header">
+    <div class="page-header-bg">
+      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Panoramic%20view%20of%20multiple%20Chinese%20university%20campuses%20collage%2C%20historic%20gates%2C%20modern%20architecture%2C%20students%2C%20cherry%20blossoms%2C%20morning%20mist%2C%20cinematic%20editorial%20style&image_size=landscape_16_9" alt="Universities in China" loading="eager">
+    </div>
+    <div class="container">
+      <div class="page-header-content">
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Universities</span>
+        </div>
+        <h1 class="page-title">Explore China's Top Universities</h1>
+        <p class="page-subtitle">Browse our network of 250+ partner universities. Filter by location, program type, language of instruction, and more to discover your ideal match.</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top: var(--space-7);">
+    <div class="container">
+      <div class="glass-card" style="padding: var(--space-5); margin-bottom: var(--space-7);">
+        <div class="flex flex-wrap gap-4 items-center justify-between" style="margin-bottom: var(--space-5);">
+          <div class="search-box" style="min-width: 380px; box-shadow: none; border-color: rgba(10,22,40,0.06);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#97a0b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" placeholder="Search by university name..." id="universitySearch">
+          </div>
+          <div class="flex gap-3 flex-wrap items-center">
+            <span class="meta-label">Sort by:</span>
+            <select id="filterDegree" class="form-select" style="width: auto; padding: 0.625rem 1rem;">
+              <option value="">All Degrees</option>
+              <option value="Bachelor">Bachelor's</option>
+              <option value="Master">Master's</option>
+              <option value="PhD">PhD</option>
+            </select>
+            <select id="filterCity" class="form-select" style="width: auto; padding: 0.625rem 1rem;">
+              <option value="">All Cities</option>
+              <option value="Beijing">Beijing</option>
+              <option value="Shanghai">Shanghai</option>
+              <option value="Guangzhou">Guangzhou</option>
+              <option value="Hangzhou">Hangzhou</option>
+              <option value="Nanjing">Nanjing</option>
+              <option value="Wuhan">Wuhan</option>
+              <option value="Chengdu">Chengdu</option>
+              <option value="Xi'an">Xi'an</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <span class="filter-chip active" data-group="single">All</span>
+          <span class="filter-chip" data-group="single">Top 50 QS</span>
+          <span class="filter-chip" data-group="single">C9 League</span>
+          <span class="filter-chip" data-group="single">Project 985</span>
+          <span class="filter-chip" data-group="single">English Taught</span>
+          <span class="filter-chip" data-group="single">Scholarships</span>
+          <span class="filter-chip" data-group="single">Medical Programs</span>
+          <span class="filter-chip" data-group="single">Engineering</span>
+          <span class="filter-chip" data-group="single">Business</span>
+        </div>
+      </div>
+
+      <div class="universities-grid">
+        <article class="university-card glass-card" data-name="Tsinghua University" data-city="Beijing" data-degree="Bachelor,Master,PhD">
+          <div class="university-image">
+            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Tsinghua%20University%20Beijing%20grand%20historic%20gate%20entrance%2C%20cherry%20blossom%2C%20traditional%20Chinese%20architecture%20meets%20modern%20buildings%2C%20students%20walking%2C%20spring%20day%2C%20premium%20editorial%20photography&image_size=landscape_4_3" alt="Tsinghua University" loading="lazy">
+            <div class="university-image-overlay"></div>
+            <span class="university-badge gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> C9 League</span>
+            <div class="university-rank">#1<span>CHINA</span></div>
+          </div>
+          <div class="university-content">
+            <h3 class="university-name">Tsinghua University</h3>
+            <div class="university-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Beijing, China
+            </div>
+            <div class="university-meta">
+              <div class="meta-item">
+                <span class="meta-label">Programs</span>
+                <span class="meta-value">180+</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Scholarship</span>
+                <span class="meta-value gold">Full Tuition</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Tuition</span>
+                <span class="meta-value">$3,000 - $12,000</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">QS World</span>
+                <span class="meta-value">#22</span>
+              </div>
+            </div>
+            <div class="university-card-footer">
+              <span class="filter-chip" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">English / Chinese</span>
+              <a href="university-detail.html" class="view-link">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="university-card glass-card" data-name="Peking University" data-city="Beijing" data-degree="Bachelor,Master,PhD">
+          <div class="university-image">
+            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Peking%20University%20Weiming%20Lake%20scenic%20campus%2C%20pagoda%20tower%2C%20willow%20trees%20lakeside%2C%20historic%20architecture%2C%20students%20reading%20by%20the%20lake%2C%20autumn%20season%2C%20golden%20light&image_size=landscape_4_3" alt="Peking University" loading="lazy">
+            <div class="university-image-overlay"></div>
+            <span class="university-badge gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> C9 League</span>
+            <div class="university-rank">#2<span>CHINA</span></div>
+          </div>
+          <div class="university-content">
+            <h3 class="university-name">Peking University</h3>
+            <div class="university-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Beijing, China
+            </div>
+            <div class="university-meta">
+              <div class="meta-item">
+                <span class="meta-label">Programs</span>
+                <span class="meta-value">200+</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Scholarship</span>
+                <span class="meta-value gold">Available</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Tuition</span>
+                <span class="meta-value">$2,800 - $14,000</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">QS World</span>
+                <span class="meta-value">#12</span>
+              </div>
+            </div>
+            <div class="university-card-footer">
+              <span class="filter-chip" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">English / Chinese</span>
+              <a href="university-detail.html" class="view-link">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="university-card glass-card" data-name="Shanghai Jiao Tong University" data-city="Shanghai" data-degree="Bachelor,Master,PhD">
+          <div class="university-image">
+            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Shanghai%20Jiao%20Tong%20University%20modern%20campus%20with%20skyline%20view%2C%20futuristic%20architecture%2C%20Huangpu%20river%20nearby%2C%20international%20students%2C%20sunset%20light%2C%20high%20quality&image_size=landscape_4_3" alt="Shanghai Jiao Tong University" loading="lazy">
+            <div class="university-image-overlay"></div>
+            <span class="university-badge gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> C9 League</span>
+            <div class="university-rank">#3<span>CHINA</span></div>
+          </div>
+          <div class="university-content">
+            <h3 class="university-name">Shanghai Jiao Tong University</h3>
+            <div class="university-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Shanghai, China
+            </div>
+            <div class="university-meta">
+              <div class="meta-item">
+                <span class="meta-label">Programs</span>
+                <span class="meta-value">160+</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Scholarship</span>
+                <span class="meta-value gold">Available</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Tuition</span>
+                <span class="meta-value">$3,500 - $13,000</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">QS World</span>
+                <span class="meta-value">#46</span>
+              </div>
+            </div>
+            <div class="university-card-footer">
+              <span class="filter-chip" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">English / Chinese</span>
+              <a href="university-detail.html" class="view-link">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="university-card glass-card" data-name="Zhejiang University" data-city="Hangzhou" data-degree="Bachelor,Master,PhD">
+          <div class="university-image">
+            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Zhejiang%20University%20Hangzhou%20lakeside%20campus%2C%20modern%20green%20architecture%2C%20lush%20gardens%2C%20West%20Lake%20influence%2C%20students%20on%20bicycles%2C%20spring%20bamboo%20forest%2C%20editorial%20photo&image_size=landscape_4_3" alt="Zhejiang University" loading="lazy">
+            <div class="university-image-overlay"></div>
+            <span class="university-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg> Project 985</span>
+            <div class="university-rank">#4<span>CHINA</span></div>
+          </div>
+          <div class="university-content">
+            <h3 class="university-name">Zhejiang University</h3>
+            <div class="university-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Hangzhou, China
+            </div>
+            <div class="university-meta">
+              <div class="meta-item">
+                <span class="meta-label">Programs</span>
+                <span class="meta-value">190+</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Scholarship</span>
+                <span class="meta-value gold">Available</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Tuition</span>
+                <span class="meta-value">$2,500 - $11,000</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">QS World</span>
+                <span class="meta-value">#93</span>
+              </div>
+            </div>
+            <div class="university-card-footer">
+              <span class="filter-chip" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">English / Chinese</span>
+              <a href="university-detail.html" class="view-link">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="university-card glass-card" data-name="Fudan University" data-city="Shanghai" data-degree="Bachelor,Master,PhD">
+          <div class="university-image">
+            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Fudan%20University%20Shanghai%20historic%20campus%2C%20ivy-covered%20brick%20buildings%2C%20large%20lawn%20courtyard%2C%20students%20studying%20under%20trees%2C%20autumn%20maple%20leaves%2C%20premium%20photography&image_size=landscape_4_3" alt="Fudan University" loading="lazy">
+            <div class="university-image-overlay"></div>
+            <span class="university-badge gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> C9 League</span>
+            <div class="university-rank">#5<span>CHINA</span></div>
+          </div>
+          <div class="university-content">
+            <h3 class="university-name">Fudan University</h3>
+            <div class="university-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Shanghai, China
+            </div>
+            <div class="university-meta">
+              <div class="meta-item">
+                <span class="meta-label">Programs</span>
+                <span class="meta-value">170+</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Scholarship</span>
+                <span class="meta-value gold">Full Tuition</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Tuition</span>
+                <span class="meta-value">$3,200 - $12,500</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">QS World</span>
+                <span class="meta-value">#34</span>
+              </div>
+            </div>
+            <div class="university-card-footer">
+              <span class="filter-chip" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">English / Chinese</span>
+              <a href="university-detail.html" class="view-link">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="university-card glass-card" data-name="Nanjing University" data-city="Nanjing" data-degree="Bachelor,Master,PhD">
+          <div class="university-image">
+            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Nanjing%20University%20historic%20campus%2C%20ancient%20Chinese%20architecture%2C%20boulevard%20of%20plane%20trees%2C%20spring%20season%2C%20students%20walking%20to%20class%2C%20high%20end%20photograph&image_size=landscape_4_3" alt="Nanjing University" loading="lazy">
+            <div class="university-image-overlay"></div>
+            <span class="university-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg> Project 985</span>
+            <div class="university-rank">#6<span>CHINA</span></div>
+          </div>
+          <div class="university-content">
+            <h3 class="university-name">Nanjing University</h3>
+            <div class="university-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Nanjing, China
+            </div>
+            <div class="university-meta">
+              <div class="meta-item">
+                <span class="meta-label">Programs</span>
+                <span class="meta-value">150+</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Scholarship</span>
+                <span class="meta-value gold">Available</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Tuition</span>
+                <span class="meta-value">$2,400 - $10,000</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">QS World</span>
+                <span class="meta-value">#133</span>
+              </div>
+            </div>
+            <div class="university-card-footer">
+              <span class="filter-chip" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">English / Chinese</span>
+              <a href="university-detail.html" class="view-link">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="university-card glass-card" data-name="Wuhan University" data-city="Wuhan" data-degree="Bachelor,Master,PhD">
+          <div class="university-image">
+            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Wuhan%20University%20famous%20cherry%20blossom%20avenue%2C%20pink%20cherry%20trees%20in%20full%20bloom%2C%20students%20walking%20through%20path%2C%20historic%20red%20roof%20buildings%2C%20romantic%20spring%20scene%2C%20editorial&image_size=landscape_4_3" alt="Wuhan University" loading="lazy">
+            <div class="university-image-overlay"></div>
+            <span class="university-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg> Project 985</span>
+            <div class="university-rank">#8<span>CHINA</span></div>
+          </div>
+          <div class="university-content">
+            <h3 class="university-name">Wuhan University</h3>
+            <div class="university-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Wuhan, China
+            </div>
+            <div class="university-meta">
+              <div class="meta-item">
+                <span class="meta-label">Programs</span>
+                <span class="meta-value">140+</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Scholarship</span>
+                <span class="meta-value gold">Available</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Tuition</span>
+                <span class="meta-value">$2,200 - $9,000</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">QS World</span>
+                <span class="meta-value">#194</span>
+              </div>
+            </div>
+            <div class="university-card-footer">
+              <span class="filter-chip" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">English / Chinese</span>
+              <a href="university-detail.html" class="view-link">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="university-card glass-card" data-name="Sun Yat-sen University" data-city="Guangzhou" data-degree="Bachelor,Master,PhD">
+          <div class="university-image">
+            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Sun%20Yat-sen%20University%20Guangzhou%20campus%2C%20tropical%20palm%20trees%2C%20modern%20and%20historic%20blend%20architecture%2C%20south%20china%20green%20vegetation%2C%20students%2C%20sunny%20day%2C%20premium%20photo&image_size=landscape_4_3" alt="Sun Yat-sen University" loading="lazy">
+            <div class="university-image-overlay"></div>
+            <span class="university-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg> Project 985</span>
+            <div class="university-rank">#9<span>CHINA</span></div>
+          </div>
+          <div class="university-content">
+            <h3 class="university-name">Sun Yat-sen University</h3>
+            <div class="university-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Guangzhou, China
+            </div>
+            <div class="university-meta">
+              <div class="meta-item">
+                <span class="meta-label">Programs</span>
+                <span class="meta-value">155+</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Scholarship</span>
+                <span class="meta-value gold">Available</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Tuition</span>
+                <span class="meta-value">$2,300 - $9,500</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">QS World</span>
+                <span class="meta-value">#260</span>
+              </div>
+            </div>
+            <div class="university-card-footer">
+              <span class="filter-chip" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">English / Chinese</span>
+              <a href="university-detail.html" class="view-link">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="university-card glass-card" data-name="Xi'an Jiaotong University" data-city="Xi'an" data-degree="Bachelor,Master,PhD">
+          <div class="university-image">
+            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Xian%20Jiaotong%20University%20campus%2C%20ancient%20Chinese%20city%20walls%20background%2C%20modern%20research%20buildings%2C%20autumn%20ginkgo%20trees%20golden%20leaves%2C%20students%2C%20Shaanxi%20heritage&image_size=landscape_4_3" alt="Xi'an Jiaotong University" loading="lazy">
+            <div class="university-image-overlay"></div>
+            <span class="university-badge gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> C9 League</span>
+            <div class="university-rank">#10<span>CHINA</span></div>
+          </div>
+          <div class="university-content">
+            <h3 class="university-name">Xi'an Jiaotong University</h3>
+            <div class="university-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Xi'an, China
+            </div>
+            <div class="university-meta">
+              <div class="meta-item">
+                <span class="meta-label">Programs</span>
+                <span class="meta-value">130+</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Scholarship</span>
+                <span class="meta-value gold">Full Tuition</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Tuition</span>
+                <span class="meta-value">$2,000 - $8,500</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">QS World</span>
+                <span class="meta-value">#249</span>
+              </div>
+            </div>
+            <div class="university-card-footer">
+              <span class="filter-chip" style="padding: 0.25rem 0.75rem; font-size: 0.7rem;">English / Chinese</span>
+              <a href="university-detail.html" class="view-link">
+                View Details
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="text-center" style="margin-top: var(--space-7);">
+        <a href="contact.html" class="btn btn-primary">
+          Can't find the right university? Talk to our advisors
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer" class="footer"></footer>
+  <div id="floatingContact" class="floating-contact"></div>
+  <div id="lightbox" class="lightbox"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
